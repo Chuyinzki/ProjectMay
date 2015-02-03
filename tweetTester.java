@@ -4,9 +4,10 @@ class tweetTester {
     public static void main(String[] args){
       
 Scanner scan = new Scanner(System.in);
- //Yo negro
+
 System.out.println("Please enter a tweet:");
 String tweet = scan.nextLine();
+scan.close();
  
 int tlength = tweet.length();
 int hashtags = 0;
@@ -17,11 +18,12 @@ char letter1;
  
  
 System.out.println(tweet);
-if(tlength >= 140){
+tweet = tweet.toLowerCase();
+if(tlength > 140){
   System.out.println("Excess Characters: " + (tlength - 140));
 }
 else{
-  while (count < tlength){
+  while (count < tlength - 1){
     letter1 = tweet.charAt(count);
     
     if(letter1 == '#' && tweet.charAt(count + 1) != ' ' && tweet.charAt(count + 1) != '\t'){
@@ -33,7 +35,6 @@ else{
       count++;
     }
     else if(letter1 == 'h'){
-      tweet = tweet.toLowerCase();
       if(tweet.startsWith("http://", count)){
         links++;
         count++;
@@ -42,14 +43,14 @@ else{
         count++;
       }
     }
-      else{
+    else{
         count++;
       }
     }
     
     System.out.println("Length Correct");
     System.out.println("Number of Hashtags: " + hashtags);
-    System.out.println("Number of Attributes: " + attributes);
+    System.out.println("Number of Attributions: " + attributes);
     System.out.println("Number of Links: " + links);
 }
 }
